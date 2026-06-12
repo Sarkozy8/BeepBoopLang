@@ -42,7 +42,7 @@ Token Lexer::NextToken()
     char c = Peek();
 
     if (std::isalpha(c))
-        return ReadIdentifier();
+        return ReadBeepBoops();
 
     if (std::isdigit(c))
         return ReadNumber();
@@ -60,7 +60,7 @@ Token Lexer::NextToken()
     return {TokenType::Unknown, std::string(1, c)};
 }
 
-Token Lexer::ReadIdentifier()
+Token Lexer::ReadBeepBoops()
 {
     std::string value;
 
@@ -69,7 +69,7 @@ Token Lexer::ReadIdentifier()
         value += Advance();
     }
 
-    return {TokenType::Identifier, value};
+    return {TokenType::BeepBoops, value};
 }
 
 Token Lexer::ReadNumber()

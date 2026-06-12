@@ -3,7 +3,7 @@
 
 enum class TokenType
 {
-    Identifier,
+    BeepBoops,
     Number,
     String,
     Semicolon,
@@ -31,7 +31,7 @@ class Lexer
     Token NextToken();
 
   private:
-    Token ReadIdentifier();
+    Token ReadBeepBoops();
     Token ReadNumber();
     Token ReadString();
     std::string source;

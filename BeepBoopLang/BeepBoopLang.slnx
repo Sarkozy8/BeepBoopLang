@@ -3,5 +3,5 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
-  <Project Path="BeepBoopLang.vcxproj" />
+  <Project Path="BeepBoopLang.vcxproj" Id="0066a843-53a3-4060-be76-93bb1e9c27a2" />
 </Solution>
