@@ -19,6 +19,9 @@ std::vector<Token> Lexer::Tokenize()
 
     tokens.push_back({TokenType::EndOfFile, ""}); // Just for now, might delete if I dont use it
 
+    if (tokens.empty())
+        throw std::runtime_error("You got no tokens my brother/sister christ.");
+
     return tokens;
 }
 
@@ -75,7 +78,8 @@ Token Lexer::NextToken()
     }
 
     Advance();
-    return {TokenType::Unknown, std::string(1, c)};
+
+    throw std::runtime_error(std::string("Invalid character: ") + c);
 }
 
 Token Lexer::ExtractBeepBoops()
@@ -90,6 +94,7 @@ Token Lexer::ExtractBeepBoops()
     return {TokenType::BeepBoops, value};
 }
 
+// TODO: Add check for f for floats
 Token Lexer::ExtractNumber()
 {
     std::string value;
@@ -111,7 +116,7 @@ Token Lexer::ExtractString()
     }
     if (IsAtEnd())
     {
-        return {TokenType::Unknown, value}; // Unterminated string, Add error handling here
+        throw std::runtime_error("Open string in source code.");
     }
 
     value += Advance();

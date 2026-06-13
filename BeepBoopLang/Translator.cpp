@@ -12,6 +12,9 @@ std::string Translator::Translate()
         translation.append(TranslateToken(token));
     }
 
+    if (translation.empty())
+        throw std::runtime_error("You got no translation my brother/sister christ.");
+
     return translation;
 }
 
@@ -31,10 +34,8 @@ std::string Translator::TranslateToken(const Token &token)
         return token.value;
     case TokenType::EndOfFile:
         return token.value;
-    case TokenType::Unknown:
-        return "";
     default:
-        std::cout << "You really fucked up, ah?" << std::endl;
+        throw std::runtime_error("You really fucked up, ah?");
         break;
     }
 }
@@ -60,6 +61,7 @@ std::string Translator::TranslateBeepBoop(const std::string BeepBoop)
         break;
 
     default:
+        throw std::runtime_error("You really fucked up, ah?");
         break;
     }
 

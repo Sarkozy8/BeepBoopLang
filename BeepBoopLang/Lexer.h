@@ -9,8 +9,7 @@ enum class TokenType
     Number,
     String,
     Semicolon,
-    EndOfFile,
-    Unknown
+    EndOfFile
 };
 
 struct Token

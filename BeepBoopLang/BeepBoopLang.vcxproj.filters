@@ -24,6 +24,9 @@
     <ClCompile Include="Translator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Transpiler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Sample.BeepBoop" />
@@ -36,6 +39,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="HelpCenter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Transpiler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
