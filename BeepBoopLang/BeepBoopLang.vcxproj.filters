@@ -32,10 +32,10 @@
     <ClInclude Include="Lexer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Main.h">
+    <ClInclude Include="Translator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Translator.h">
+    <ClInclude Include="HelpCenter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

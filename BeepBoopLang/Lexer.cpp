@@ -4,6 +4,24 @@ Lexer::Lexer(const std::string &source) : source(source), current(0)
 {
 }
 
+std::vector<Token> Lexer::Tokenize()
+{
+    std::vector<Token> tokens;
+
+    while (!IsAtEnd())
+    {
+        // Get the next token from the lexer
+        Token token = NextToken();
+        tokens.push_back(token);
+        if (token.type == TokenType::EndOfFile)
+            break;
+    }
+
+    tokens.push_back({TokenType::EndOfFile, ""}); // Just for now, might delete if I dont use it
+
+    return tokens;
+}
+
 char Lexer::Peek() const
 {
     if (current >= source.size())
@@ -42,13 +60,13 @@ Token Lexer::NextToken()
     char c = Peek();
 
     if (std::isalpha(c))
-        return ReadBeepBoops();
+        return ExtractBeepBoops();
 
     if (std::isdigit(c))
-        return ReadNumber();
+        return ExtractNumber();
 
     if (c == '"')
-        return ReadString();
+        return ExtractString();
 
     if (c == ';')
     {
@@ -60,7 +78,7 @@ Token Lexer::NextToken()
     return {TokenType::Unknown, std::string(1, c)};
 }
 
-Token Lexer::ReadBeepBoops()
+Token Lexer::ExtractBeepBoops()
 {
     std::string value;
 
@@ -72,7 +90,7 @@ Token Lexer::ReadBeepBoops()
     return {TokenType::BeepBoops, value};
 }
 
-Token Lexer::ReadNumber()
+Token Lexer::ExtractNumber()
 {
     std::string value;
     while (!IsAtEnd() && std::isdigit(Peek()))
@@ -82,10 +100,11 @@ Token Lexer::ReadNumber()
     return {TokenType::Number, value};
 }
 
-Token Lexer::ReadString()
+Token Lexer::ExtractString()
 {
     std::string value;
-    Advance(); // Skip the opening quote
+    value += Advance();
+
     while (!IsAtEnd() && Peek() != '"')
     {
         value += Advance();
@@ -94,6 +113,8 @@ Token Lexer::ReadString()
     {
         return {TokenType::Unknown, value}; // Unterminated string, Add error handling here
     }
-    Advance(); // Skip the closing quote
+
+    value += Advance();
+
     return {TokenType::String, value};
 }

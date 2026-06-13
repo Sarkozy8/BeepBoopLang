@@ -3,8 +3,9 @@
 #include "Lexer.h"
 #include <string>
 #include <unordered_map>
+#include <vector>
 
-enum class Command
+enum class Keyword
 {
     Print,
     Variable,
@@ -12,20 +13,18 @@ enum class Command
     Unknown
 };
 
-// Easy to access
-std::unordered_map<std::string, Command> dictionary = {{"BeepBoop", Command::Print},
-                                                       {"Bop", Command::Variable},
-                                                       {"Beep", Command::If}};
-
 class Translator
 {
   public:
     Translator(const std::vector<Token> &tokens);
-
     std::string Translate();
 
   private:
-    const std::vector<Token> &tokens;
+    std::string TranslateToken(const Token &token);
+    std::string TranslateBeepBoop(const std::string BeepBoop);
+
+  private:
+    const std::vector<Token> tokens;
     size_t current = 0;
-    std::string TranslateToken();
+    static const std::unordered_map<std::string, Keyword> dictionary;
 };

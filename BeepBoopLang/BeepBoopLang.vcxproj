@@ -147,8 +147,8 @@
     <None Include="Sample.BeepBoop" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="HelpCenter.h" />
     <ClInclude Include="Lexer.h" />
-    <ClInclude Include="Main.h" />
     <ClInclude Include="Translator.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
