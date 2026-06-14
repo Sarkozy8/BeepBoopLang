@@ -1,1 +1,27 @@
-BeepBoop "Hello World\n";
+// Testing Code
+
+Boop BupBeepBoop = 2;
+BupBeepBoop += 2;
+BupBeepBoop++; // Should give BupBeepBoop == 5
+
+Beep (BupBeepBoop == 0)
+{
+	BeepBoop "It is 5";
+}
+Bop
+{
+	BeepBoop "It is not 5";
+}
+
+BoopBoop(true)
+{
+	Bap BupBeepBeep = 0;
+	Beep (BupBeepBeep < 10)
+	{
+		BupBeepBeep = BupBeepBeep + 2 * 2;
+	}
+	Bop
+	{
+		BopBoop;
+	}
+}

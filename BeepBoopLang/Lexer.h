@@ -9,6 +9,9 @@ enum class TokenType
     Number,
     String,
     Semicolon,
+    Operator,
+    Delimiters,
+    Comment,
     EndOfFile
 };
 

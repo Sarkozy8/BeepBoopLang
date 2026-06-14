@@ -20,7 +20,7 @@ std::vector<Token> Lexer::Tokenize()
     tokens.push_back({TokenType::EndOfFile, ""}); // Just for now, might delete if I dont use it
 
     if (tokens.empty())
-        throw std::runtime_error("You got no tokens my brother/sister christ.");
+        throw std::runtime_error("Lexer: You got no tokens my brother/sister christ.");
 
     return tokens;
 }
@@ -68,18 +68,49 @@ Token Lexer::NextToken()
     if (std::isdigit(c))
         return ExtractNumber();
 
+    // Double without left side
+    if (c == '.')
+        return ExtractNumber();
+
     if (c == '"')
         return ExtractString();
 
     if (c == ';')
+        return {TokenType::Semicolon, std::string(1, Advance())};
+
+    if (c == '=' || c == '+' || c == '-' || c == '*' || c == '%' || c == '<' || c == '>' || c == '!')
+        return {TokenType::Operator, std::string(1, Advance())};
+
+    if (c == '(' || c == ')' || c == '[' || c == ']' || c == '{' || c == '}' || c == '>' || c == '!')
+        return {TokenType::Delimiters, std::string(1, Advance())};
+
+    if (c == '/')
     {
         Advance();
-        return {TokenType::Semicolon, ";"};
+
+        // Skips comments
+        if (!IsAtEnd() && Peek() == '/')
+        {
+            Advance();
+
+            while (!IsAtEnd() && Peek() != '\n')
+            {
+                Advance();
+            }
+
+            if (!IsAtEnd())
+                Advance();
+
+            return NextToken();
+        }
+
+        // Divide
+        return {TokenType::Operator, "/"};
     }
 
     Advance();
 
-    throw std::runtime_error(std::string("Invalid character: ") + c);
+    throw std::runtime_error(std::string("Lexer: Invalid character: ") + c);
 }
 
 Token Lexer::ExtractBeepBoops()
@@ -94,14 +125,19 @@ Token Lexer::ExtractBeepBoops()
     return {TokenType::BeepBoops, value};
 }
 
-// TODO: Add check for f for floats
 Token Lexer::ExtractNumber()
 {
     std::string value;
-    while (!IsAtEnd() && std::isdigit(Peek()))
+    while (!IsAtEnd() && (std::isdigit(Peek()) || Peek() == '.'))
     {
         value += Advance();
     }
+
+    while (!IsAtEnd() && (std::isdigit(Peek())))
+    {
+        value += Advance();
+    }
+
     return {TokenType::Number, value};
 }
 
@@ -116,7 +152,7 @@ Token Lexer::ExtractString()
     }
     if (IsAtEnd())
     {
-        throw std::runtime_error("Open string in source code.");
+        throw std::runtime_error("Lexer: Open string in source code.");
     }
 
     value += Advance();
