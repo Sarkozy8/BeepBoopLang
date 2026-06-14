@@ -145,9 +145,6 @@
     <ClCompile Include="Transpiler.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Sample.BeepBoop" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="HelpCenter.h" />
     <ClInclude Include="Lexer.h" />
     <ClInclude Include="Translator.h" />

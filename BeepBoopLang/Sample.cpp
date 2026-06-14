@@ -1,3 +1,7 @@
+#include <string>
+#include <iostream>
+int main()
+{
 auto BupBeepBoop=2;
 BupBeepBoop+=2;
 BupBeepBoop++;
@@ -10,12 +14,13 @@ std::cout << "It is not 5";
 }
 while (true)
 {
-BapBupBeepBeep=0;
+auto BupBeepBeep=0;
 if (BupBeepBeep<10)
 {
 BupBeepBeep=BupBeepBeep+2*2;
 }
 else {
 break;
+}
 }
 }

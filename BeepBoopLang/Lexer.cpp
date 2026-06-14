@@ -78,10 +78,11 @@ Token Lexer::NextToken()
     if (c == ';')
         return {TokenType::Semicolon, std::string(1, Advance())};
 
-    if (c == '=' || c == '+' || c == '-' || c == '*' || c == '%' || c == '<' || c == '>' || c == '!')
+    if (c == '=' || c == '+' || c == '-' || c == '*' || c == '%' || c == '<' || c == '>' || c == '!' || c == '&' ||
+        c == '|' || c == ':')
         return {TokenType::Operator, std::string(1, Advance())};
 
-    if (c == '(' || c == ')' || c == '[' || c == ']' || c == '{' || c == '}' || c == '>' || c == '!')
+    if (c == '(' || c == ')' || c == '[' || c == ']' || c == '{' || c == '}')
         return {TokenType::Delimiters, std::string(1, Advance())};
 
     if (c == '/')

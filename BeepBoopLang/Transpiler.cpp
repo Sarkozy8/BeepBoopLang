@@ -15,12 +15,13 @@ void Transpiler::Run()
     Translate();
     SaveTranslation();
     Compile();
+    Execute();
 }
 
 void Transpiler::GetBeepBoops()
 {
     source = ReadFile(filePath);
-    newFileName = filePath.stem().string() + ".cpp";
+    newFileName = filePath.stem().string();
     std::cout << "Original: " << std::endl;
     std::cout << source << std::endl;
 }
@@ -41,19 +42,30 @@ void Transpiler::Translate()
 
 void Transpiler::SaveTranslation()
 {
-    SaveFile(translation, newFileName);
+    SaveFile(translation, newFileName + ".cpp");
+    std::cout << "Translation saved properly. " << std::endl;
 }
 
 void Transpiler::Compile()
 {
-    std::string command = "compiler\\bin\\g++.exe " + newFileName + " -o Generated.exe";
+    std::string command = "compiler\\bin\\g++.exe " + newFileName + ".cpp -o" + newFileName + ".exe ";
 
     int result = std::system(command.c_str());
 
     if (result != 0)
         throw std::runtime_error("Transpiler: I was not able to compile the code.");
+
+    std::cout << "Translation compiled properly. " << std::endl;
 }
 
 void Transpiler::Execute()
 {
+    std::string command = ".\\" + newFileName + ".exe";
+
+    int result = std::system(command.c_str());
+
+    if (result != 0)
+        throw std::runtime_error("Execution failed.");
+
+    std::cout << "\nTranslation executed properly. " << std::endl;
 }

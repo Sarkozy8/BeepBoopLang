@@ -10,6 +10,13 @@ std::string Translator::Translate()
 
     std::string translation;
 
+    translation += "#include <string>\n";
+    translation += "#include <iostream>\n";
+    translation += "#include <vector>\n";
+    translation += "#include <unordered_map>\n\n";
+    translation += "int main()\n";
+    translation += "{\n";
+
     for (const auto &token : tokens)
     {
         translation.append(TranslateToken(token));
@@ -17,6 +24,9 @@ std::string Translator::Translate()
 
     if (translation.empty())
         throw std::runtime_error("Translator: You got no translation my brother/sister christ.");
+
+    translation += "return 0;\n";
+    translation += "}\n";
 
     return translation;
 }
