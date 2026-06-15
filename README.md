@@ -40,6 +40,8 @@ Sample.BeepBoop
 
 All functions must be declared between `BeepBeepBeep` markers.
 
+This should be declared at the beggining.
+
 Even if your program does not contain functions, the function section must still exist.
 
 ```cpp
