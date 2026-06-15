@@ -5,7 +5,14 @@ int main(int argc, char *argv[])
     if (argc < 2)
     {
         std::cout << "Usage:\n";
-        std::cout << "BeepBoopLang.exe run <file.BeepBoop>\n";
+        std::cout << ".\\BeepBoopLang.exe run <file.BeepBoop>\n";
+        return 1;
+    }
+
+    if (argc > 3)
+    {
+        std::cout << "Usage:\n";
+        std::cout << ".\\BeepBoopLang.exe run <file.BeepBoop>\n";
         return 1;
     }
 

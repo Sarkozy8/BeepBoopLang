@@ -12,6 +12,9 @@ enum class TokenType
     Operator,
     Delimiters,
     Comment,
+    StringDeclaration, // For SemanticAnalysis()
+    VectorDeclaration, // For SemanticAnalysis()
+    FunctionSection,   // For declaring function section
     EndOfFile
 };
 

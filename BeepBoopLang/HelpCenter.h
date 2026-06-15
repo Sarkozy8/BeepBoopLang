@@ -1,11 +1,16 @@
 #pragma once
+#include <filesystem>
 #include <fstream>
+#include <iostream>
 #include <sstream>
 #include <string>
 
 std::string ReadFile(const std::filesystem::path &filename)
 {
     std::ifstream file(filename);
+
+    if (filename.extension() != ".BeepBoop")
+        throw std::runtime_error("Not a .BeepBoop file: " + filename.string());
 
     if (!file.is_open())
         throw std::runtime_error("Could not open file: " + filename.string());

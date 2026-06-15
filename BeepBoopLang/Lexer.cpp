@@ -79,7 +79,7 @@ Token Lexer::NextToken()
         return {TokenType::Semicolon, std::string(1, Advance())};
 
     if (c == '=' || c == '+' || c == '-' || c == '*' || c == '%' || c == '<' || c == '>' || c == '!' || c == '&' ||
-        c == '|' || c == ':')
+        c == '|' || c == ':' || c == ',')
         return {TokenType::Operator, std::string(1, Advance())};
 
     if (c == '(' || c == ')' || c == '[' || c == ']' || c == '{' || c == '}')
